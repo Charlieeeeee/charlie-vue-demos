@@ -1,16 +1,51 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/provideInject">ProvideInject</router-link> |
-      <router-link to="/vuex">Vuex</router-link>
-    </div>
+    <el-menu
+      :default-active="defaultActiveIndex"
+      class="el-menu-top"
+      mode="horizontal"
+      @select="handleSelect"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b">
+      <template v-for="(route, index) in routes">
+        <el-menu-item :index="`${index+1}`" :key="route.name">
+          <router-link :to="route.path">{{route.meta.title}}</router-link>
+        </el-menu-item>
+      </template>
+    </el-menu>
     <router-view />
   </div>
 </template>
 
-<style lang="scss">
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import { RouteConfig } from "vue-router";
+import { routes } from '@/router'
+
+@Component
+export default class App extends Vue {
+  get routes (): Array<RouteConfig> {
+    return routes
+  }
+
+  get defaultActiveIndex (): String {
+    /**
+     * 直接从location.hash里获取path可以防止页面导航闪变一下, 具体什么原因呢?
+     * 说明this['$route'].path 获取是在首次渲染之后发生的.
+     * 这是为什么呢?
+     * 看来还是需要阅读源码呀
+    */
+    const path: String = location.hash.replace(/^#(\/\w+)(\?.*|$)/,'$1');
+    return routes.findIndex((route:RouteConfig):Boolean => route.path === path) + 1 + ''
+  }
+
+  handleSelect (key: Number, keyPath: Array<String>): void {
+    // console.log(key, keyPath)
+  }
+}
+</script>
+<style lang="scss" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -18,17 +53,21 @@
   text-align: center;
   color: #2c3e50;
 }
+</style>
 
-#nav {
-  padding: 30px;
-
+<style lang="scss">
+.el-menu-top{
+  .el-menu-item {
+    font-size: 14px;
+    color: #303133;
+    cursor: pointer;
+    transition: border-color .3s,background-color .3s,color .3s;
+    box-sizing: border-box;
+    padding: 0;
+  }
   a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+    display: inline-block;
+    padding: 0 20px;
   }
 }
 </style>

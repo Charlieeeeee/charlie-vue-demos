@@ -8,13 +8,13 @@ import GrandChild from '@/components/GrandChild.vue'
   }
 })
 export default class Child extends Vue {
-  bar: String = 'bar';
+  // bar: String = 'bar';
   @Inject() readonly foo!: String;
 
   protected render () {
     return <div class="child">
       foo in Child: { this.foo }
-      <GrandChild bar={ this.bar }/> {/* 此处待解决 */}
+      <GrandChild/> {/* 此处待解决 */}
     </div>
   }
 }

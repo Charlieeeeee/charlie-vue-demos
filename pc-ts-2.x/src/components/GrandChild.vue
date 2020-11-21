@@ -1,7 +1,7 @@
 <template>
   <div class="grand-child">
-      bar in GrandChild: {{bar}}
-      <br />
+      <!-- bar in GrandChild: {{bar}}
+      <br /> -->
       foo in GrandChild: {{foo}}
   </div>
 </template>
@@ -12,12 +12,12 @@ import 'reflect-metadata';
 
 @Component
 export default class GrandChild extends Vue {
-    @Prop() bar!: String;
+    // @Prop() bar!: String;
     @Inject() readonly foo!: String;
 
 
     created (): void {
-        console.log(this.$props.bar)
+        // console.log(this.$props.bar)
     }
 }
 </script>

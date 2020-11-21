@@ -2,7 +2,7 @@
   <div class="user">
       <p>interest: {{interest}} in User</p>
       <p>sex: {{SEX[sex]}} in User</p>
-      <p><button @click="toggle">toggle</button></p>
+      <p><el-button type="primary" @click="toggle">toggle</el-button></p>
   </div>
 </template>
 
