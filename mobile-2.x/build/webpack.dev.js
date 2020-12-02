@@ -3,7 +3,7 @@ const commonConfig = require('./webpack.common');
 const webpack = require('webpack');
 const path = require('path');
 const FriendlyErrors = require('friendly-errors-webpack-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+// const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const os=require("os");
 
 const port = "3000"
@@ -73,18 +73,18 @@ const devConfig = {
                      `Your application is running here: http://${ip}:${port}`],
       }
    }),
-   new HardSourceWebpackPlugin({
-    cacheDirectory: 'node_modules/.cache/hard-source/[confighash]',
-    recordsPath: 'node_modules/.cache/hard-source/[confighash]/records.json',
-    configHash: function (webpackConfig) {
-      return require('node-object-hash')({ sort: false }).hash(webpackConfig);
-    },
-    environmentHash: {
-      root: process.cwd(),
-      directories: [],
-      files: ['package-lock.json', 'yarn.lock'],
-    },
-  }),
+  //  new HardSourceWebpackPlugin({
+  //   cacheDirectory: 'node_modules/.cache/hard-source/[confighash]',
+  //   recordsPath: 'node_modules/.cache/hard-source/[confighash]/records.json',
+  //   configHash: function (webpackConfig) {
+  //     return require('node-object-hash')({ sort: false }).hash(webpackConfig);
+  //   },
+  //   environmentHash: {
+  //     root: process.cwd(),
+  //     directories: [],
+  //     files: ['package-lock.json', 'yarn.lock'],
+  //   },
+  // }),
   ],
   module: {
     rules: [

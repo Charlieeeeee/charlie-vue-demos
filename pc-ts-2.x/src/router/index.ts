@@ -4,7 +4,6 @@ import Home from "@/views/Home.vue";
 
 Vue.use(VueRouter);
 
-
 export const routes: Array<RouteConfig> = [
   {
     path: "/",
@@ -51,7 +50,17 @@ export const routes: Array<RouteConfig> = [
       title: '手册指南'
     },
     component: () =>
-      import(/* webpackChunkName: "manual" */ "@/views/Manual.vue")
+      import(/* webpackChunkName: "manual" */ "@/views/Manual.vue"),
+    children: [
+      {
+        path: "",
+        component: () => import("@/components/Interface.vue"),
+      },
+      {
+        path: "interface",
+        component: () => import("@/components/Interface.vue"),
+      }
+    ]
   },
 ];
 

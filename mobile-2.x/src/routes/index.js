@@ -31,6 +31,14 @@ export default {
         title: 'observable'
       },
       component: () => import('@/pages/observable/observable')
+    },
+    {
+      path: '/Swiper',
+      name: 'Swiper',
+      meta: {
+        title: 'Swiper'
+      },
+      component: () => import('@/pages/Swiper/Swiper')
     }
   ]
 };

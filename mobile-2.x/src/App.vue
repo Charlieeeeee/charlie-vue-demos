@@ -4,7 +4,7 @@
       v-if="$root.isShowNavBar"
       :title="navTitle"
       left-text="返回"
-      right-text="按钮"
+      right-text="目录"
       left-arrow
       @click-left="onClickLeft"
       @click-right="onClickRight"

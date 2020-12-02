@@ -1,16 +1,18 @@
 <template>
   <div id="app">
     <el-menu
-      :default-active="defaultActiveIndex"
+      :default-active="defaultActiveName"
       class="el-menu-top"
       mode="horizontal"
       @select="handleSelect"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b">
-      <template v-for="(route, index) in routes">
-        <el-menu-item :index="`${index+1}`" :key="route.name">
-          <router-link :to="route.path">{{route.meta.title}}</router-link>
+      <template v-for="route in routes">
+        <el-menu-item :index="route.name" :key="route.name">
+          <span @click="handleLinkTo(route.path)">
+            {{route.meta.title}}
+          </span>
         </el-menu-item>
       </template>
     </el-menu>
@@ -29,15 +31,20 @@ export default class App extends Vue {
     return routes
   }
 
-  get defaultActiveIndex (): String {
+  get defaultActiveName (): string | undefined {
     /**
      * 直接从location.hash里获取path可以防止页面导航闪变一下, 具体什么原因呢?
      * 说明this['$route'].path 获取是在首次渲染之后发生的.
      * 这是为什么呢?
      * 看来还是需要阅读源码呀
     */
-    const path: String = location.hash.replace(/^#(\/\w+)(\?.*|$)/,'$1');
-    return routes.findIndex((route:RouteConfig):Boolean => route.path === path) + 1 + ''
+    const path: string = location.hash.replace(/^#(\/\w+)(\?.*|\/\w+(\?.*|$)|$)/,'$1');
+    return (routes as Array<RouteConfig>).find((route:RouteConfig):Boolean => route.path === path).name
+  }
+
+  handleLinkTo (path: string): void {
+    if( path === this['$route'].path ) return;
+    this['$router'].push({path})
   }
 
   handleSelect (key: Number, keyPath: Array<String>): void {
@@ -56,18 +63,5 @@ export default class App extends Vue {
 </style>
 
 <style lang="scss">
-.el-menu-top{
-  .el-menu-item {
-    font-size: 14px;
-    color: #303133;
-    cursor: pointer;
-    transition: border-color .3s,background-color .3s,color .3s;
-    box-sizing: border-box;
-    padding: 0;
-  }
-  a {
-    display: inline-block;
-    padding: 0 20px;
-  }
-}
+
 </style>

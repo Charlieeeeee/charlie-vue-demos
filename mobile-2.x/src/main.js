@@ -10,7 +10,11 @@ import './style/init-css.scss';
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import './base';
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+// import style (>= Swiper 6.x)
+import 'swiper/swiper-bundle.css';
 
+Vue.use(VueAwesomeSwiper /* { default options with global component } */);
 Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(Vant);

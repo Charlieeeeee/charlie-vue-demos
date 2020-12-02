@@ -2,39 +2,52 @@
   <div class="manual">
   <div class="side-nav-bar">
     <el-menu
-      default-active="2"
+      default-active="Interface"
       class="el-menu-vertical-demo"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b">
-      <el-menu-item index="1">
-        <i class="el-icon-document"></i>
-        <span slot="title">导航一</span>
+      <el-menu-item index="Interface">
+        <span @click="handleLinkTo('/manual/interface')">
+          接口
+        </span>
       </el-menu-item>
       <el-menu-item index="2">
-        <i class="el-icon-document"></i>
-        <span slot="title">导航二</span>
+        导航二
       </el-menu-item>
       <el-menu-item index="3">
-        <i class="el-icon-document"></i>
-        <span slot="title">导航三</span>
+        导航三
       </el-menu-item>
       <el-menu-item index="4">
-        <i class="el-icon-document"></i>
-        <span slot="title">导航四</span>
+        导航四
       </el-menu-item>
     </el-menu>
   </div>
-  <div class="content"></div>
+  <div class="content">
+    <router-view />
+  </div>
 </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+// import { routes } from '@/router'
+import { RouteConfig } from "vue-router";
 
 @Component
 export default class Manual extends Vue {
+  // get manaulRoutes (): Array<RouteConfig> {
+  //   return (routes as Array<RouteConfig>).find(route => route.path === '/manual').children
+  // }
 
+  // created (): void {
+  //   console.log(this.manaulRoutes)
+  // }
+
+  handleLinkTo (path: string): void {
+    if( path === this['$route'].path ) return ;
+    this['$router'].push({path})
+  }
 }
 </script>
 
