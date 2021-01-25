@@ -2,25 +2,18 @@
   <div class="manual">
   <div class="side-nav-bar">
     <el-menu
-      default-active="Interface"
+      :default-active="defaultActive"
       class="el-menu-vertical-demo"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b">
-      <el-menu-item index="Interface">
-        <span @click="handleLinkTo('/manual/interface')">
-          接口
-        </span>
-      </el-menu-item>
-      <el-menu-item index="2">
-        导航二
-      </el-menu-item>
-      <el-menu-item index="3">
-        导航三
-      </el-menu-item>
-      <el-menu-item index="4">
-        导航四
-      </el-menu-item>
+      <template v-for="(item) in manaulRoutes">
+        <el-menu-item :index="item.path" :key="item.path">
+          <span @click="handleLinkTo(item.path)">
+            {{item.path}}
+          </span>
+        </el-menu-item>
+      </template>
     </el-menu>
   </div>
   <div class="content">
@@ -31,22 +24,31 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-// import { routes } from '@/router'
+import { routes } from '@/router'
 import { RouteConfig } from "vue-router";
 
 @Component
 export default class Manual extends Vue {
-  // get manaulRoutes (): Array<RouteConfig> {
-  //   return (routes as Array<RouteConfig>).find(route => route.path === '/manual').children
-  // }
+  get manaulRoutes (): Array<RouteConfig> {
+    return (routes as Array<RouteConfig>).find(route => route.path === '/manual').children
+  }
 
-  // created (): void {
-  //   console.log(this.manaulRoutes)
-  // }
+  get defaultActive() {
+    return this.$route.path.replace('/manual/','')
+  }
+
+  created() {
+    if(this.$route.path === '/manual'){
+      this.$router.replace({
+        path: '/manual/interface'
+      })
+    }
+  }
 
   handleLinkTo (path: string): void {
-    if( path === this['$route'].path ) return ;
-    this['$router'].push({path})
+    path = `/manual/${path}`
+    if( path === this.$route.path ) return ;
+    this.$router.push({path: path})
   }
 }
 </script>

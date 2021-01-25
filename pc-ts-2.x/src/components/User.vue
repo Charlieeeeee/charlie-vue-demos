@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { Vue, Component, Model, Emit, PropSync } from 'vue-property-decorator'
-import { Esex } from '@/utils/declarations'
+import { Esex } from '@/utils'
 
 @Component
 export default class User extends Vue {

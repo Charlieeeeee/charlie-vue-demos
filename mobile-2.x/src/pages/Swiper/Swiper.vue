@@ -8,7 +8,7 @@
 <script>
 import TopTabBar from './components/TopTabBar.vue'
 import Cards from './components/Cards.vue'
-
+import { add, subtract, multiplyUtil } from '@/utils'
 export default {
   components: {
     TopTabBar,
@@ -46,10 +46,15 @@ export default {
   methods: {
     handleActiveIndexChange (index) {
       if(this.options.activeIndex !== index){
-        // console.log('index', index)
         this.options.activeIndex = index
       }
     }
+  },
+  mounted () {
+    console.log('1 + 2 = ',add(1, 2))
+    console.log('2 - 1 = ', subtract(2, 1))
+    console.log('1 * 2 = ', multiplyUtil.multiply(1, 2))
+    console.log(this.$store.state.name)
   }
 }
 </script>

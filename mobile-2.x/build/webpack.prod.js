@@ -6,22 +6,11 @@ const webpack = require('webpack');
 const path = require('path');
 const commonConfig = require('./webpack.common');
 
-let env = '';
-switch (process.argv[3]) {
-  case 'prod': {
-    env = require('./config/prod.env');
-    break;
-  }
-  case 'pre': {
-    env = require('./config/pre.env');
-    break;
-  }
-  case 'test': {
-    env = require('./config/test.env');
-    break;
-  }
-
-}
+let env = {
+  'prod': require('./config/prod.env'),
+  'pre': require('./config/pre.env'),
+  'test': require('./config/test.env')
+}[process.argv[3]]
 
 const prodConfig = {
   mode: 'production',

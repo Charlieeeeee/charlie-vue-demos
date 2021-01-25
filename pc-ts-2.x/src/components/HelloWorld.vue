@@ -11,7 +11,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, Emit } from "vue-property-decorator";
 import 'reflect-metadata';
-import { Esex } from '@/utils/declarations'
+import { Esex } from '@/utils'
 
 @Component
 export default class HelloWorld extends Vue {

@@ -30,6 +30,9 @@ function getIp(){
   return ip
 }
 const ip = getIp();
+let env = {
+  'pics': require('./config/pics.env')
+}[process.argv[3]]
 
 const devConfig = {
   mode: 'development',
@@ -43,7 +46,7 @@ const devConfig = {
     port: port, // 端口
     open: true, // 是否打开浏览器
     overlay: { // 出现错误或者警告的时候，是否覆盖页面线上错误消息。
-      warnings: true,
+      warnings: false,
       errors: true
     },
     publicPath: '/', // 此路径下的打包文件可在浏览器中访问。
@@ -65,6 +68,9 @@ const devConfig = {
     }
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': env
+    }),
     new webpack.NamedModulesPlugin(), // 更容易查看(patch)的依赖
     new webpack.HotModuleReplacementPlugin(), // 替换插件
     new FriendlyErrors({

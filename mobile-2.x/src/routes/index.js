@@ -1,5 +1,9 @@
+import VueRouter from 'vue-router';
+import Vue from 'vue';
 
-export default {
+Vue.use(VueRouter);
+
+export const router = {
   mode: 'hash',
   routes: [
     {
@@ -39,6 +43,25 @@ export default {
         title: 'Swiper'
       },
       component: () => import('@/pages/Swiper/Swiper')
+    },
+    {
+      path: '/Slots',
+      name: 'Slots',
+      meta: {
+        title: 'Slots'
+      },
+      component: () => import('@/pages/Slots/Slots')
     }
   ]
 };
+if (process.env.NODE_ENV === 'pics') {
+  router.routes.push({
+    path: '/pics',
+    name: 'pics',
+    meta: {
+      title: 'pics'
+    },
+    component: () => import('@/pages/pics/pics')
+  });
+}
+export default new VueRouter(router);

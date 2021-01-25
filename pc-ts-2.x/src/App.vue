@@ -16,7 +16,9 @@
         </el-menu-item>
       </template>
     </el-menu>
-    <router-view />
+    <div class="router-view">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -28,7 +30,7 @@ import { routes } from '@/router'
 @Component
 export default class App extends Vue {
   get routes (): Array<RouteConfig> {
-    return routes
+    return routes.slice(1)
   }
 
   get defaultActiveName (): string | undefined {
@@ -39,7 +41,9 @@ export default class App extends Vue {
      * 看来还是需要阅读源码呀
     */
     const path: string = location.hash.replace(/^#(\/\w+)(\?.*|\/\w+(\?.*|$)|$)/,'$1');
-    return (routes as Array<RouteConfig>).find((route:RouteConfig):Boolean => route.path === path).name
+    console.log(path)
+    const name = routes!.find((route:RouteConfig):Boolean => route.path === path).name
+    return name
   }
 
   handleLinkTo (path: string): void {
@@ -50,6 +54,7 @@ export default class App extends Vue {
   handleSelect (key: Number, keyPath: Array<String>): void {
     // console.log(key, keyPath)
   }
+
 }
 </script>
 <style lang="scss" scoped>
@@ -59,9 +64,18 @@ export default class App extends Vue {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+  .router-view{
+    margin-top: 61px;
+  }
 }
 </style>
 
 <style lang="scss">
-
+.el-menu-top{
+  position: fixed!important;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
 </style>

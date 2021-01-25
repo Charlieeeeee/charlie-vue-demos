@@ -13,8 +13,8 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
-import User from '@/components/User.vue'
-import { Esex } from '@/utils/declarations'
+import User from './../components/User.vue'
+import { Esex } from './../utils'
 
 /**
  * vue-property-decorator 装饰器

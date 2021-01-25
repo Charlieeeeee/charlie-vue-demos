@@ -1,5 +1,5 @@
-class Flexible {
-  constructor() {
+var flexible = {
+  init() {
     this.docEl = document.documentElement;
     this.dpr = window.devicePixelRatio || 1;
 
@@ -7,7 +7,7 @@ class Flexible {
     this.setRemUnit();
     this.bind();
     this.detect();
-  }
+  },
 
   bind() {
     window.addEventListener('resize', this.setRemUnit);
@@ -16,7 +16,7 @@ class Flexible {
         this.setRemUnit();
       }
     });
-  }
+  },
 
   setBodyFontSize() {
     if (document.body) {
@@ -24,13 +24,13 @@ class Flexible {
     } else {
       document.addEventListener('DOMContentLoaded', this.setBodyFontSize);
     }
-  }
+  },
 
   // set 1rem = viewWidth / 10
   setRemUnit() {
     var rem = document.documentElement.getBoundingClientRect().width / 10;
     document.documentElement.style.fontSize = rem + 'px';
-  }
+  },
 
   detect() {
     // detect 0.5px supports
@@ -46,6 +46,6 @@ class Flexible {
       this.docEl.removeChild(fakeBody);
     }
   }
-}
+};
 
-new Flexible();
+flexible.init();

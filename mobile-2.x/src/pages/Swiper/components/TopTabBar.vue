@@ -18,7 +18,7 @@ export default {
     data () {
         return {
             swiperOptions: {
-                slidesPerView: 3,
+                slidesPerView: 3.5,
                 slideToClickedSlide: true,
             },
             activeTab: 0

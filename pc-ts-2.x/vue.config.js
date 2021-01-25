@@ -9,7 +9,8 @@ module.exports = {
       alias: {
         // 别名
         vue$: 'vue/dist/vue.esm.js', // 加上这一句
-        '@': path.resolve(__dirname, './src')
+        '@': path.resolve(__dirname, './src'),
+        '@static': path.resolve(__dirname, './static'),
       }
     }
   },

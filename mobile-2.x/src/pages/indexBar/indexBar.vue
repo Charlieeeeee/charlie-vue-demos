@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import routeData from "@/routes";
+import { router } from "@/routes";
 export default {
   name: "IndexBar",
   activated() {
@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     routes() {
-      return routeData.routes.filter(
+      return router.routes.filter(
         (item) => item.name !== "IndexBar" && item.name
       );
     },

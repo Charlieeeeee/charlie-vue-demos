@@ -11,3 +11,14 @@ declare global {
     }
   }
 }
+
+// declare module "vue/types/vue" {
+//   import VueRouter, { Route } from 'vue-router';
+//   interface Vue {
+//     $router: VueRouter;
+//     $route: Route;
+//     $http: any;
+//     $Message: any;
+//     $Modal: any;
+//   }
+// }

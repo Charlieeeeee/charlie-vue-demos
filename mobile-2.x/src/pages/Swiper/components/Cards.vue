@@ -16,7 +16,7 @@ export default {
     data () {
         return {
             swiperOptions: {
-                width: 300,
+                width: document.body.offsetWidth * 0.7,
                 slidesPerView: 1,
                 slideToClickedSlide: true,
                 on: {
@@ -54,6 +54,7 @@ export default {
 <style lang="scss" scoped>
   .swiper-container{
     height: 800px;
+    margin-top: 10px;
 
     .slide-item{
       height: 100%;

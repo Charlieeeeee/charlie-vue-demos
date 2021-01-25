@@ -10,7 +10,8 @@
     "build:pre": "npx webpack --env pre --progress --colors --config ./build/webpack.prod.js",
     "build:prod": "npx webpack --env prod --progress --colors --config ./build/webpack.prod.js",
     "start": "npx webpack-dev-server --progress --colors --config build/webpack.dev.js",
-    "dev": "npx webpack-dev-server --progress --colors --config build/webpack.dev.js"
+    "dev": "npx webpack-dev-server --progress --colors --config build/webpack.dev.js",
+    "dev:pics": "npx webpack-dev-server  --env pics --progress --colors --config build/webpack.dev.js"
   },
   "author": "",
   "license": "ISC",

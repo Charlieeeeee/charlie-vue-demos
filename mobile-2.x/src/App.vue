@@ -8,6 +8,7 @@
       left-arrow
       @click-left="onClickLeft"
       @click-right="onClickRight"
+      
     />
 
     <keep-alive>
@@ -17,7 +18,8 @@
 </template>
 
 <script>
-import routes from "./routes";
+import router, { routes } from "./routes";
+
 export default {
   name: "App",
   data: () => ({
@@ -30,6 +32,7 @@ export default {
         this.navTitle = val.title;
       }
     });
+
   },
   methods: {
     onClickLeft() {

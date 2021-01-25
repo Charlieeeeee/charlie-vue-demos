@@ -1,9 +1,12 @@
-
+import Vuex from 'vuex';
+import Vue from 'vue';
 import mutations from './mutations';
 import actions from './actions';
 import modules from './modules';
 
-export default {
+Vue.use(Vuex);
+
+const store = {
   state: {
     name: 'charlie'
   },
@@ -14,3 +17,4 @@ export default {
   actions,
   modules
 };
+export default new Vuex.Store(store);

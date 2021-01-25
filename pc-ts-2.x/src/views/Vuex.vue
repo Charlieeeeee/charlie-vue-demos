@@ -8,7 +8,7 @@
 import { Vue, Component } from 'vue-property-decorator'
 import Developer from '@/components/Developer.vue'
 import { AboutStore } from '@/store/modules/about'
-import { Ideveloper } from '@/utils/declarations'
+import { Ideveloper } from '@/utils'
 
 @Component({
     components: {
