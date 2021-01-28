@@ -18,7 +18,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json','.vue'], // 表示这几个文件的后缀名可以省略不写
     alias: {
-      '@': path.resolve(__dirname, '../src/')// 这样@就表示项目根目录中src的这一层路径（绝对路径）
+      '@': path.resolve(__dirname, '../src/'),// 这样@就表示项目根目录中src的这一层路径（绝对路径）
+      // 'vue$': 'vue/dist/vue.esm.js'
     }
   },
   plugins: [

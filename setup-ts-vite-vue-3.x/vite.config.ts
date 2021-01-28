@@ -7,6 +7,7 @@ const pathResolve = (pathStr: string) => {
 const config = {
   base: './', //在生产中服务时的基本公共路径。@default '/'
   alias: {
+    'vue': 'vue/dist/vue.esm-bundler.js',
     '/@/': pathResolve('./src'),
   },
   outDir: 'dist', //构建输出将放在其中。如果目录存在，它将在构建之前被删除。@default 'dist'

@@ -30,7 +30,18 @@ init();
 Vue.use(ElementUI);
 Vue.use(VueRouter);
 Vue.use(Vuex);
-
+// Vue.component('my-component', {
+//   template: '<div style="color: red;">my-component</div>'
+// });
+// // 定义一个名为 button-counter 的新组件
+// Vue.component('button-counter', {
+//   data: function() {
+//     return {
+//       count: 0
+//     };
+//   },
+//   template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+// });
 Vue.$Loading = Vue.prototype.$Loading = Loading;
 const vm = new Vue({
   el: '#app',

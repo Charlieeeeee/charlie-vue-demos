@@ -4,6 +4,7 @@
       <el-input v-model="input" placeholder="请输入内容"></el-input>
     </div>
     <child :input.sync="input" v-bind="$attrs" />
+    <!-- <my-component></my-component> -->
   </div>
 </template>
 

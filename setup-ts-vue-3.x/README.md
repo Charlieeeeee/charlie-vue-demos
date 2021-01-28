@@ -1,4 +1,4 @@
-# setup-vue-3.x
+# setup-ts-vue-3.x
 
 ## Project setup
 ```
