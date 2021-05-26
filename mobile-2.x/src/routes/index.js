@@ -51,6 +51,14 @@ export const router = {
         title: 'Slots'
       },
       component: () => import('@/pages/Slots/Slots')
+    },
+    {
+      path: '/qrcode',
+      name: 'qrcode',
+      meta: {
+        title: 'qrcode'
+      },
+      component: () => import('@/pages/qrcode/qrcode')
     }
   ]
 };

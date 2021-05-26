@@ -9,7 +9,8 @@ console.log(app)
 // 9.
 // 注册一个名为my-component的组件
 app.component('my-component', {
-  template: `<div style="color: red;">my-component</div>`,
+  props: ['myProp'],
+  template: `<div style="color: red;">my-component; {{myProp}};</div>`,
   created () {
     console.log('here is my-component')
   }
@@ -56,7 +57,7 @@ app.config.warnHandler = function(msg, vm, trace) {
 
 // 4.
 // 之后(Vue 3.x)
-app.config.globalProperties.foo = 'bar'
+app.config.globalProperties.$foo = 'globalProperties'
 
 // 5.
 // 任何以“ion-”开头的元素都将被识别为自定义元素
