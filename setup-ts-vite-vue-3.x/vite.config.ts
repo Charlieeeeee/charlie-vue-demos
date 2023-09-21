@@ -1,42 +1,32 @@
-import path from 'path';
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
+import path from 'path'
 
-const pathResolve = (pathStr: string) => {
-  return path.resolve(__dirname, pathStr);
-};
+const pathSrc = path.resolve(__dirname, 'src')
 
-const config = {
-  base: './', //在生产中服务时的基本公共路径。@default '/'
-  alias: {
-    'vue': 'vue/dist/vue.esm-bundler.js',
-    '/@/': pathResolve('./src'),
+// https://vitejs.dev/config/
+export default defineConfig({
+  base: './',
+  server: {
+    open: true,
+    hmr: true
   },
-  outDir: 'dist', //构建输出将放在其中。如果目录存在，它将在构建之前被删除。@default 'dist'
-  minify: 'esbuild',//压缩
-  hostname: "localhost",//ip地址
-  port: 8888, //端口号
-  open: false, //是否自动在浏览器打开
-  https: false,//是否开启 https
-  ssr: false,//是否服务端渲染
-  optimizeDeps: { // 引入第三方的配置
-    // include: ["moment", "echarts", "axios", "mockjs"]
-    include: ["axios"]
-  },
-  proxy: { //配置代理
-    // 如果是 /lsbdb 打头，则访问地址如下
-    // '/lsbdb': 'http://10.192.195.96:8087',
-    // 如果是 /lsbdb 打头，则访问地址如下
-    // '/lsbdb': {
-    //   target: 'http://10.192.195.96:8087/',
-    //   changeOrigin: true,
-    //   // rewrite: path => path.replace(/^\/lsbdb/, '')
-    // }
-    '/api': {
-      target: 'http://10.0.11.7:8090',
-      changeOrigin: true,
-      ws: true,
-      rewrite: (path: string) => path.replace(/^\/api/, '')
-    }
+  plugins: [
+    vue(),
+    AutoImport({
+      // Auto import functions from Vue, e.g. ref, reactive, toRef...
+      // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
+      imports: ['vue'],
+
+      dts: path.resolve(pathSrc, 'auto-imports.d.ts'),
+    }),
+  ],
+  resolve: {
+    alias: {
+      'vue': 'vue/dist/vue.esm-bundler.js',
+      '@': pathSrc
+    },
+    extensions: ['.js', '.vue']
   }
-}
-
-module.exports = config;
+})
